@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap');
+
 *{
 	margin: 0;
 	padding: 0;
@@ -5,17 +7,40 @@
 	box-sizing: border-box;
 }
 
+:root{
+	--bgColor : #133742;
+	--fillColor: #d9bfbf;
+}
+
 .game{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	width: 80vw;
-	height: 80vh;
-	background: lightblue;
+	position: relative;
+	min-height: 100vh;
+	background: var(--bgColor);
+	padding: 20px 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.game .progress {
+	position: absolute;
+	left: 0%;
+	top: 10px;
+	width: 0%;
+	height: calc(100% - 20px);
+	background: var(--fillColor);
+	z-index: 0;
+}
+
+#clock{
+	position: absolute;
+	top: 50vh;
+	left: 50vw;
+	transform: translate(-50%,-50%);
+	color: white;
+	font-size: 140px;
+	font-family: 'Roboto Mono', monospace;
+	mix-blend-mode: difference;
 }
 
 .container{
@@ -33,12 +58,17 @@
 }
 
 .card{
+	opacity: 0.9;
 	cursor: pointer;
-	margin: 5px;
+	margin: 10px;
 	perspective: 1800px;
 	border-radius: 5px;
 	overflow: hidden;
 	transition: all 0.3s ease;
+}
+
+.card:hover{
+	opacity: 1;
 }
 
 .content{
