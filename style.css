@@ -1,0 +1,83 @@
+*{
+	margin: 0;
+	padding: 0;
+	outline: none;
+	box-sizing: border-box;
+}
+
+.game{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 80vw;
+	height: 80vh;
+	background: lightblue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.row{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+}
+
+.card{
+	cursor: pointer;
+	margin: 5px;
+	perspective: 1800px;
+	border-radius: 5px;
+	overflow: hidden;
+	transition: all 0.3s ease;
+}
+
+.content{
+	width: 80px;
+	height: 100px;
+	transition: transform .8s ease;
+	transform-style: preserve-3d;
+}
+
+
+.disappear{
+	opacity: 0;
+	pointer-events: none;
+}
+
+
+.clicked>.content {
+	transform: rotateY( 180deg );
+	transition: all 0.4s ease;
+}
+
+.front, .back{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 100px;
+	font-size: 25px;
+	backface-visibility: hidden;
+}
+
+.back{
+	background: skyblue;
+	color: white;
+	
+}
+.front{
+	background: #03446A;
+	color: white;
+	transform: rotateY( 180deg );
+}
+
