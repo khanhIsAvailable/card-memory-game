@@ -1,3 +1,5 @@
+var timer = null
+
 function shufle(row,col, from){
 	let elements = []
 	let table = []
@@ -33,7 +35,7 @@ function shufle(row,col, from){
 function level (row, col, totalTime, showTime ){
 	var table = shufle(row,col,0)
 	
-
+    // ///////
 	console.log(table)
 
 	var playBoard = initialPlayBoard(row,col);
@@ -171,7 +173,7 @@ function level (row, col, totalTime, showTime ){
 				wait(500).then(()=>{
 					addClass(card,prevCard, "disappear")
 					if(check()){
-						console.log("You won")
+						clear(timer,document.querySelector("#clock"),true)
 					}
 					setDefault()
 				})

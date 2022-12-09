@@ -1,7 +1,5 @@
-
-var timer = null
-
-function  start(timer, bar, clock, time){
+function  start(bar, clock, time){
+	let timer = null
 	let i = 0;
 	let sec = time/1000
 	let step = time / 1000
@@ -14,7 +12,7 @@ function  start(timer, bar, clock, time){
 			bar.style.width = `${i/10}%`	
 			count--;
 		} else {
-			clear(timer, clock)
+			clear(timer, clock, false)
 		}
 
 		// countdown and write to HTML
@@ -24,22 +22,30 @@ function  start(timer, bar, clock, time){
 			clock.innerHTML = `${sec}s`
 		}
 
-
-
 	}, step)
+
+	return timer
 }
 
 
-function clear(timer,clock){
-	if(timer){
-		clearTimeout(timer)
-		clock.innerHTML = "TIMEOUT"
+function clear(timer,clock,isWinner = false){
+	clearTimeout(timer)
+	if(isWinner){
+		clock.innerHTML = "You Won"	
 	}
+	else{
+		clock.innerHTML = "You Lost"	
+	}
+
+	clock.parentNode.classList.add("result")
+
 }
 
 
-function progressBar(){
+function progressBar(totalTime){
+	var timer = null
 	const bar = document.querySelector("#progress")
 	const clock = document.querySelector("#clock")
-	start(timer,bar, clock, 3000)
+	timer = start(bar, clock, totalTime)
+	return timer;
 }

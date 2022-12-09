@@ -25,11 +25,17 @@
 .game .progress {
 	position: absolute;
 	left: 0%;
-	top: 10px;
+/*	top: 10px;*/
 	width: 0%;
-	height: calc(100% - 20px);
+	height: 100%;
 	background: var(--fillColor);
 	z-index: 0;
+	opacity: .7;
+}
+
+.game .result{
+	z-index: 100;
+	opacity: 1;
 }
 
 #clock{
@@ -38,7 +44,7 @@
 	left: 50vw;
 	transform: translate(-50%,-50%);
 	color: white;
-	font-size: 140px;
+	font-size: 120px;
 	font-family: 'Roboto Mono', monospace;
 	mix-blend-mode: difference;
 }

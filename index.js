@@ -1,5 +1,6 @@
 
-var board1 = new Board(2,6,6,100000,1000);
+// Board(level, row, col, totalTime, showTime)
 
-progressBar();
+var board1 = new Board(2,3,2,10000,1000);
+
 board1.runGame();

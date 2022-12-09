@@ -10,6 +10,7 @@ class Board {
 
 	runGame(){
 		level(this.row, this.col, this.totalTime, this.showTime);
+		timer = progressBar(this.totalTime)	
 	}
 
 }
