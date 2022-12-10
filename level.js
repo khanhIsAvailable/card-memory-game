@@ -1,5 +1,9 @@
 var timer = null
 
+var goToNextLevel = false;
+
+var isAvailable = true
+
 function shufle(row,col, from){
 	let elements = []
 	let table = []
@@ -110,6 +114,7 @@ function level (row, col, totalTime, showTime ){
 	const setDefault = () => {
 		prevPoint.setDefault();
 		prevCard = null;
+		return true
 	}
 
 	const renderCards = (table) => {
@@ -150,44 +155,47 @@ function level (row, col, totalTime, showTime ){
 		let currentX = card.getAttribute("row");
 		let currentY = card.getAttribute("col")
 		currentPoint.setCoordinates(currentX,currentY)
-
 		
 		let {x,y} = prevPoint.getCoordinates();
-
-
-		if (x == -1 && y == -1 )  {
-			flip.flipToFront(card)
-			prevPoint.setCoordinates(currentX, currentY);
-			wait(300).then(()=>{
-				prevCard = card
-
-			})
-		}
-		else{
-			if(currentPoint.equal(prevPoint)) {
-				flip.flipToBack(card)
-				setDefault()
-			} 
-			else if(currentPoint.isPair(prevPoint,  table, playBoard)){
+		
+		if(!isAvailable){
+			return;
+		} 
+		else {
+			if (x == -1 && y == -1 )  {
 				flip.flipToFront(card)
-				wait(500).then(()=>{
-					addClass(card,prevCard, "disappear")
-					if(check()){
-						clear(timer,document.querySelector("#clock"),true)
-					}
-					setDefault()
+				prevPoint.setCoordinates(currentX, currentY);
+				wait(300).then(()=>{
+					prevCard = card
 				})
-				
-					
-			} else {
-				flip.flipToFront(card)
-				wait(showTime).then(()=>{
-					flip.flipToBack(prevCard)
+			}
+			else{
+				isAvailable = false
+				if(currentPoint.equal(prevPoint)) {
 					flip.flipToBack(card)
-					setDefault()
-				})
+					isAvailable =  setDefault()
+				} 
+				else if(currentPoint.isPair(prevPoint,  table, playBoard)){
+					flip.flipToFront(card)
+					wait(500).then(()=>{
+						addClass(card,prevCard, "disappear")
+						if(check()){
+							clear(timer,document.querySelector("#clock"),true)
+						}
+						isAvailable =  setDefault()
+					})
+					
+						
+				} else {
+					flip.flipToFront(card)
+					wait(showTime).then(()=>{
+						flip.flipToBack(prevCard)
+						flip.flipToBack(card)
+						isAvailable =  setDefault()
+					})
 
-			} 
+				} 
+			}
 			
 		} 
 	}
@@ -214,17 +222,13 @@ function level (row, col, totalTime, showTime ){
 		
 		cards.forEach((card, i)=>{
 			card.addEventListener("click", ()=>{
-				
+
 				matchingHandler(card);	
 
 			})
 
 		})
 	}
-
-
-
-
 
 
 	renderCards(table)

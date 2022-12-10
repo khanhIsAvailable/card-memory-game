@@ -33,18 +33,33 @@
 	opacity: .7;
 }
 
-.game .result{
+.game .op1{
 	z-index: 100;
 	opacity: 1;
 }
 
-#clock{
+.disable{
+	display: none;
+}
+
+#result{
 	position: absolute;
 	top: 50vh;
 	left: 50vw;
-	transform: translate(-50%,-50%);
+	transform: translate(-50%, -50%);
 	color: white;
-	font-size: 120px;
+	font-size: 100px;
+	font-family: 'Roboto Mono', monospace;
+	mix-blend-mode: difference;
+}
+
+
+#clock{
+	position: absolute;
+	top: 70vh;
+	left: 10vw;
+	color: white;
+	font-size: 80px;
 	font-family: 'Roboto Mono', monospace;
 	mix-blend-mode: difference;
 }

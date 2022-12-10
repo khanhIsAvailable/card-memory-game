@@ -1,4 +1,9 @@
 
+// function resultOfGame(){
+// 	console.log("Win")
+// 	return 1
+// }
+
 class Board {
 	constructor(level, row, col, totalTime, showTime){
 		this.level = level
@@ -8,9 +13,26 @@ class Board {
 		this.showTime = showTime
 	}
 
-	runGame(){
+	run(){
+		console.log(this.level)
+		timer = progressBar(this.totalTime)		
 		level(this.row, this.col, this.totalTime, this.showTime);
-		timer = progressBar(this.totalTime)	
+		while(!timer && !goToNextLevel ){
+		}
+		console.log(timer, goToNextLevel)
+
+		switch(goToNextLevel){
+			case false:
+				if(!timer){
+					console.log("Thua")
+					return 0
+				}
+			case true:
+				console.log("Win")
+				return 1;
+			default: 
+				throw new Error("Invalid")
+		}
 	}
 
 }

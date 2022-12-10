@@ -28,16 +28,18 @@ function  start(bar, clock, time){
 }
 
 
-function clear(timer,clock,isWinner = false){
+function clear(timer, clock,isWinner = false){
+	let result = document.querySelector("#result")
 	clearTimeout(timer)
 	if(isWinner){
-		clock.innerHTML = "You Won"	
+		result.innerHTML = "You Won"	
 	}
 	else{
-		clock.innerHTML = "You Lost"	
+		result.innerHTML = "You Lost"	
 	}
 
-	clock.parentNode.classList.add("result")
+	result.parentNode.classList.add("op1")
+	clock.classList.add("disable")
 
 }
 
